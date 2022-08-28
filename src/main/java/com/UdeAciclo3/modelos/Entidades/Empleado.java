@@ -67,6 +67,22 @@ public class Empleado {
     }
 
     public void setRol(String rol) {
-        this.rol = rol;
+        if(rol== "administrativo"||rol=="operativo"){
+            this.rol = rol;
+        }else{
+            System.out.println("El rol no existe");
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", rol='" + rol + '\'' +
+                ", empresa=" + empresa +
+                '}';
     }
 }
