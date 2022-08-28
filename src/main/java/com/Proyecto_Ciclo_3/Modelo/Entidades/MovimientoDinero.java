@@ -1,4 +1,4 @@
-package com.UdeAciclo3.modelos.Entidades;
+package com.Proyecto_Ciclo_3.Modelo.Entidades;
 
 
 import javax.persistence.*;
