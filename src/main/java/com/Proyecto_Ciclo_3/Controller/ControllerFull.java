@@ -70,4 +70,6 @@ public class ControllerFull {
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerEmpresas";
     }
+    //RestController para la entidad empleados;
+
 }
