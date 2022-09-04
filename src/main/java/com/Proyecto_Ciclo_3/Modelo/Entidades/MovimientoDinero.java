@@ -4,7 +4,7 @@ package com.Proyecto_Ciclo_3.Modelo.Entidades;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Movimientos")
+@Table(name="movimientos")
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,7 +13,7 @@ public class MovimientoDinero {
     private String concepto;
 
     @ManyToOne
-    @JoinColumn(name = "empleado id")
+    @JoinColumn(name = "empleado_id")
     private Empleado usuario;
 
     public MovimientoDinero() {

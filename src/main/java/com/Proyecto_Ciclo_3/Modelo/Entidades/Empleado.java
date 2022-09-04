@@ -3,7 +3,7 @@ package com.Proyecto_Ciclo_3.Modelo.Entidades;
 import javax.persistence.*;
 
 @Entity//entidad
-@Table(name="Empleado")//para base de datos
+@Table(name="empleados")//para base de datos
 public class Empleado {
 
     @Id// autoincrementable
