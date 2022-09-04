@@ -23,7 +23,9 @@ public class EmpleadoService {
         return empleadoRepositorio.findById(id).get();
 
     }
-
+    public ArrayList<Empleado> getEmpleadoByEmpresa(Integer id){
+        return empleadoRepositorio.findByEmpresa(id);
+    }
     public boolean saveOrUpdate(Empleado empleado) {
         Empleado empleado1 = empleadoRepositorio.save(empleado);
         if (empleadoRepositorio.findById(empleado1.getId()) !=null){
