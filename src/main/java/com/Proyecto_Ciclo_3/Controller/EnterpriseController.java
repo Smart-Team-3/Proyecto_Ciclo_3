@@ -81,7 +81,7 @@ public class EnterpriseController {
 
         return empleadoService.getAllEmpleados();
     }
-    @PostMapping("/usuarios")
+    @PostMapping("/usuarios/guardar")
     public Optional<Boolean> SaveEmpleado(@RequestBody Empleado empl){
         return Optional.ofNullable(this.empleadoService.saveOrUpdate(empl));
     }
@@ -93,7 +93,7 @@ public class EnterpriseController {
     public ArrayList<Empleado> FindEmpleadoByEmpresa(@PathVariable("id") Integer id){
         return this.empleadoService.getEmpleadoByEmpresa(id);
     }
-    @PatchMapping("/usuarios/{id}")
+    @PatchMapping("/usuarios/{id}/actualizar")
     public boolean actualizarEmpleado(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
         Empleado empl = empleadoService.getEmpleadoById(id);
         empl.setNombre(empleado.getNombre());
@@ -103,7 +103,7 @@ public class EnterpriseController {
         return empleadoService.saveOrUpdate(empl);
     }
 
-    @DeleteMapping("/usuarios/{id}") //Metodo para eliminar empleados por id
+    @DeleteMapping("/usuarios/{id}/eliminar") //Metodo para eliminar empleados por id
     public String DeleteEmpleado(@PathVariable("id") Integer id) {
         boolean respuesta = empleadoService.deleteEmpleado(id); //eliminamos usando el servicio de nuestro service
         if (respuesta) {
