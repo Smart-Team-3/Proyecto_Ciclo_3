@@ -28,10 +28,10 @@ public class UsersController {
     public Empleado findUserById(@PathVariable("id") Integer id){
         return this.usersService.getEmpleadoById(id);
     }
-    @GetMapping("/Enterprises/{id}/users")
-    public ArrayList<Empleado> FinduserByEnterprise(@PathVariable("id") Integer id){
-        return this.usersService.getEmpleadoByEmpresa(id);
-    }
+//    @GetMapping("/Enterprises/{id}/users")
+//    public ArrayList<Empleado> FinduserByEnterprise(@PathVariable("id") Integer id){
+//        return this.usersService.getEmpleadoByEmpresa(id);
+//    }
     @PatchMapping("/users/{id}")
     public boolean UpdateUsers(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
         Empleado empl = usersService.getEmpleadoById(id);

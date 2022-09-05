@@ -15,8 +15,7 @@ import java.util.List;
 public class EnterpriseController {
     @Autowired
     EnterpriseService empresaService;
-    @Autowired
-    UsersService empleadoService;
+
     @GetMapping ({"/","/VerEmpresas"})
     public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje){
         List<Empresa> listaEmpresas=empresaService.getallEmpresas();

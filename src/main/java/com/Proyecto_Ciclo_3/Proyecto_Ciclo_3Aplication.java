@@ -1,10 +1,9 @@
-package com.Proyecto_Ciclo_3.Model;
+package com.Proyecto_Ciclo_3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+
 @SpringBootApplication
 public class Proyecto_Ciclo_3Aplication {
 
