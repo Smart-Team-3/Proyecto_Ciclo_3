@@ -1,4 +1,4 @@
-package com.Proyecto_Ciclo_3.Modelo;
+package com.Proyecto_Ciclo_3.Model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,26 +1,22 @@
 package com.Proyecto_Ciclo_3.Controller;
 
 
-import com.Proyecto_Ciclo_3.Modelo.Entidades.Empleado;
-import com.Proyecto_Ciclo_3.Modelo.Entidades.Empresa;
-import com.Proyecto_Ciclo_3.Service.EmpleadoService;
-import com.Proyecto_Ciclo_3.Service.EmpresaService;
+import com.Proyecto_Ciclo_3.Model.Entities.Empresa;
+import com.Proyecto_Ciclo_3.Service.UsersService;
+import com.Proyecto_Ciclo_3.Service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class EnterpriseController {
     @Autowired
-    EmpresaService empresaService;
+    EnterpriseService empresaService;
     @Autowired
-    EmpleadoService empleadoService;
+    UsersService empleadoService;
     @GetMapping ({"/","/VerEmpresas"})
     public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje){
         List<Empresa> listaEmpresas=empresaService.getallEmpresas();
@@ -74,44 +70,4 @@ public class EnterpriseController {
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerEmpresas";
     }
-    /////
-    //RestController para la entidad Empleado;
-    /////
-    @GetMapping("/usuarios")
-    public List<Empleado> viewEmpleados(){
-
-        return empleadoService.getAllEmpleados();
-    }
-    @PostMapping("/usuarios")
-    public Optional<Boolean> SaveEmpleado(@RequestBody Empleado empl){
-        return Optional.ofNullable(this.empleadoService.saveOrUpdate(empl));
-    }
-    @GetMapping(path = "/usuarios/{id}")
-    public Empleado findEmmpleadoById(@PathVariable("id") Integer id){
-        return this.empleadoService.getEmpleadoById(id);
-    }
-    @GetMapping("/Enterprises/{id}/empleados")
-    public ArrayList<Empleado> FindEmpleadoByEmpresa(@PathVariable("id") Integer id){
-        return this.empleadoService.getEmpleadoByEmpresa(id);
-    }
-    @PatchMapping("/usuarios/{id}")
-    public boolean actualizarEmpleado(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
-        Empleado empl = empleadoService.getEmpleadoById(id);
-        empl.setNombre(empleado.getNombre());
-        empl.setCorreo(empleado.getCorreo());
-        empl.setEmpresa(empleado.getEmpresa());
-        empl.setRol(empleado.getRol());
-        return empleadoService.saveOrUpdate(empl);
-    }
-    @DeleteMapping("/usuarios/{id}") //Metodo para eliminar empleados por id
-    public String DeleteEmpleado(@PathVariable("id") Integer id) {
-        boolean respuesta = empleadoService.deleteEmpleado(id); //eliminamos usando el servicio de nuestro service
-        if (respuesta) {
-            return "Se elimino correctamente el empleado con id " + id;
-        }
-        return "No se  elimino correctamente el empleado con id "+id;
-    }
-    ///RestController para la entidad movimiento dinero
-
-
 }

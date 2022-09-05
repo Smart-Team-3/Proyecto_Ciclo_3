@@ -1,7 +1,7 @@
 package com.Proyecto_Ciclo_3.Service;
 
-import com.Proyecto_Ciclo_3.Modelo.Entidades.Empresa;
-import com.Proyecto_Ciclo_3.repositorio.EmpresaRepositorio;
+import com.Proyecto_Ciclo_3.Model.Entities.Empresa;
+import com.Proyecto_Ciclo_3.Repositories.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmpresaService {
+public class EnterpriseService {
     @Autowired
-    EmpresaRepositorio empresaRepositorio;
+    EnterpriseRepository empresaRepositorio;
 
     public List<Empresa> getallEmpresas(){
         List<Empresa> listadeEmpresas = new ArrayList<>();

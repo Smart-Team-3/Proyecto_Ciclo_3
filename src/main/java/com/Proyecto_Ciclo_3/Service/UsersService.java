@@ -1,16 +1,16 @@
 package com.Proyecto_Ciclo_3.Service;
 
 
-import com.Proyecto_Ciclo_3.Modelo.Entidades.Empleado;
-import com.Proyecto_Ciclo_3.repositorio.EmpleadoRepositorio;
+import com.Proyecto_Ciclo_3.Model.Entities.Empleado;
+import com.Proyecto_Ciclo_3.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadoService {
+public class UsersService {
     @Autowired
-    EmpleadoRepositorio empleadoRepositorio;
+    UsersRepository empleadoRepositorio;
 
     public List<Empleado> getAllEmpleados(){
         List<Empleado> empleadoList = new ArrayList<>();
