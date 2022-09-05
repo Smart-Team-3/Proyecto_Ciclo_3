@@ -1,13 +1,9 @@
 package com.Proyecto_Ciclo_3.Controller;
 
-
 import com.Proyecto_Ciclo_3.Model.Entities.Empresa;
-import com.Proyecto_Ciclo_3.Service.UsersService;
 import com.Proyecto_Ciclo_3.Service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -15,59 +11,37 @@ import java.util.List;
 public class EnterpriseController {
     @Autowired
     EnterpriseService empresaService;
-    @Autowired
-    UsersService empleadoService;
-    @GetMapping ({"/","/VerEmpresas"})
-    public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje){
-        List<Empresa> listaEmpresas=empresaService.getallEmpresas();
-        model.addAttribute("emplist",listaEmpresas);
-        model.addAttribute("mensaje",mensaje);
-        return "verEmpresas"; //Llamamos al HTML
+
+    @GetMapping("/enterprise")
+    public List<Empresa> verEmpresas() {
+        return empresaService.getallEmpresas();
     }
 
-    @GetMapping("/AgregarEmpresa")
-    public String nuevaEmpresa(Model model, @ModelAttribute("mensaje") String mensaje){
-        Empresa emp= new Empresa(123456);
-        model.addAttribute("emp",emp);
-        model.addAttribute("mensaje",mensaje);
-        return "agregarEmpresa";
+    @PostMapping("/enterprise")
+    public boolean guardarEmpresa(@RequestBody Empresa empresa) {
+        return this.empresaService.setorChangeEmpresaName(empresa);
     }
-    @PostMapping("/GuardarEmpresa")
-    public String guardarEmpresa(Empresa emp, RedirectAttributes redirectAttributes){
-        if(empresaService.setorChangeEmpresaName(emp)==true){
-            redirectAttributes.addFlashAttribute("mensaje","saveOK");
-            return "redirect:/VerEmpresas";
+
+    @GetMapping(path = "enterprises/{id}")
+    public Empresa empresaPorID(@PathVariable("id") Integer id){
+        return this.empresaService.getEmpresaById(id);
+    }
+    @PatchMapping("/enterprises/{id}")
+    public boolean actualizarEmpresa(@PathVariable("id") Integer id, @RequestBody Empresa empresa) {
+        Empresa emp = empresaService.getEmpresaById(id);
+        emp.setNombre(empresa.getNombre());
+        emp.setDireccion(empresa.getDireccion());
+        emp.setTelefono(empresa.getTelefono());
+        emp.setNIT(empresa.getNIT());
+        return empresaService.setorChangeEmpresaName(emp);
+    }
+        @DeleteMapping(path = "enterprises/{id}")
+        public String DeleteEmpresa (@PathVariable("id") Integer id){
+            boolean respuesta = this.empresaService.EliminateEmpresa(id);
+            if (respuesta) {
+                return "Ha sido eliminada la empresa con el id" + id;
+            } else {
+                return "No ha sido posible eliminar la empresa con el id" + id;
+            }
         }
-        redirectAttributes.addFlashAttribute("mensaje","saveError");
-        return "redirect:/AgregarEmpresa";
-    }
-
-    @GetMapping("/EditarEmpresa/{id}")
-    public String editarEmpresa(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje){
-        Empresa emp=empresaService.getEmpresaById(id);
-        //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
-        model.addAttribute("emp",emp);
-        model.addAttribute("mensaje", mensaje);
-        return "editarEmpresa";
-    }
-
-    @PostMapping("/ActualizarEmpresa")
-    public String updateEmpresa(@ModelAttribute("emp") Empresa emp, RedirectAttributes redirectAttributes){
-        if(empresaService.setorChangeEmpresaName(emp)){
-            redirectAttributes.addFlashAttribute("mensaje","updateOK");
-            return "redirect:/VerEmpresas";
-        }
-        redirectAttributes.addFlashAttribute("mensaje","updateError");
-        return "redirect:/EditarEmpresa";
-    }
-
-    @GetMapping("/EliminarEmpresa/{id}")
-    public String eliminarEmpresa(@PathVariable Integer id, RedirectAttributes redirectAttributes){
-        if (empresaService.EliminateEmpresa(id)==true){
-            redirectAttributes.addFlashAttribute("mensaje","deleteOK");
-            return "redirect:/VerEmpresas";
-        }
-        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
-        return "redirect:/VerEmpresas";
-    }
 }
