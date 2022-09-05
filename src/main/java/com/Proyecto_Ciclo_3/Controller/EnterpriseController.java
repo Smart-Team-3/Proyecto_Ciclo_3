@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class EnterpriseController {
     @Autowired
     EmpresaService empresaService;
@@ -36,7 +36,6 @@ public class EnterpriseController {
         model.addAttribute("mensaje",mensaje);
         return "agregarEmpresa";
     }
-
     @PostMapping("/GuardarEmpresa")
     public String guardarEmpresa(Empresa emp, RedirectAttributes redirectAttributes){
         if(empresaService.setorChangeEmpresaName(emp)==true){
@@ -104,7 +103,6 @@ public class EnterpriseController {
         empl.setRol(empleado.getRol());
         return empleadoService.saveOrUpdate(empl);
     }
-
     @DeleteMapping("/usuarios/{id}") //Metodo para eliminar empleados por id
     public String DeleteEmpleado(@PathVariable("id") Integer id) {
         boolean respuesta = empleadoService.deleteEmpleado(id); //eliminamos usando el servicio de nuestro service
@@ -113,5 +111,7 @@ public class EnterpriseController {
         }
         return "No se  elimino correctamente el empleado con id "+id;
     }
+    ///RestController para la entidad movimiento dinero
+
 
 }
