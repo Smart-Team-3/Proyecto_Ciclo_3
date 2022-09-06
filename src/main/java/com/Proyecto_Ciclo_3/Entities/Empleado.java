@@ -1,4 +1,4 @@
-package com.Proyecto_Ciclo_3.Model.Entities;
+package com.Proyecto_Ciclo_3.Entities;
 
 import javax.persistence.*;
 

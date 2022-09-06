@@ -1,6 +1,6 @@
 package com.Proyecto_Ciclo_3.Controller;
 
-import com.Proyecto_Ciclo_3.Model.Entities.Empleado;
+import com.Proyecto_Ciclo_3.Entities.Empleado;
 import com.Proyecto_Ciclo_3.Service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

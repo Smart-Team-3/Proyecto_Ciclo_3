@@ -1,6 +1,6 @@
 package com.Proyecto_Ciclo_3.Service;
 
-import com.Proyecto_Ciclo_3.Model.Entities.Empresa;
+import com.Proyecto_Ciclo_3.Entities.Empresa;
 import com.Proyecto_Ciclo_3.Repositories.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.Proyecto_Ciclo_3.Repositories;
 
-import com.Proyecto_Ciclo_3.Model.Entities.Empleado;
+import com.Proyecto_Ciclo_3.Entities.Empleado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
